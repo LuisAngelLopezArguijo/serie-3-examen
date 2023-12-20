@@ -1,0 +1,200 @@
+Ejercicio 1
+class ColaAmortizada:
+    def __init__(self):
+        self.items = []
+
+    def enqueue(self, item):
+        self.items.append(item)
+
+    def dequeue(self):
+        if not self.items:
+            return None
+        return self.items.pop(0)
+Actividad de reingeniería:
+
+-Realiza el análisis de complejidad de tiempo y espacio
+Tiempo:
+La operación enqueue tiene una complejidad de tiempo O(1), ya que simplemente agrega un elemento a la lista.
+La operación dequeue tiene una complejidad de tiempo O(n), ya que elimina el primer elemento de la lista y requiere reorganizar los elementos restantes.
+
+Espacio:
+La complejidad de espacio es O(n), ya que la cantidad de elementos en la lista items determina el espacio ocupado.
+
+-Justifica que sirve y es funcional
+La implementación es funcional para una cola simple.
+
+-Establece los pasos del algoritmo
+Inicialización: Crea una instancia de la clase ColaAmortizada.
+Enqueue: Agrega elementos a la cola utilizando el método enqueue.
+Dequeue: Elimina el primer elemento de la cola utilizando el método dequeue.
+Repetir: Repite los pasos 2 y 3 según sea necesario.
+
+-Propón un ejemplo indicando entradas y salidas
+class ColaAmortizada:
+    def __init__(self):
+        self.items = []
+
+    def enqueue(self, elemento):
+        # Agregar el elemento a la cola
+        self.items.append(elemento)
+
+    def dequeue(self):
+        if not self.is_empty():
+            # Eliminar el primer elemento de la cola
+            elemento_eliminado = self.items[0]
+            del self.items[0]
+            return elemento_eliminado
+        else:
+            return None
+
+    def is_empty(self):
+        return len(self.items) == 0
+
+
+# Crear una cola amortizada
+cola = ColaAmortizada()
+
+# Enqueue: Agregar elementos a la cola
+cola.enqueue(1)
+cola.enqueue(2)
+cola.enqueue(3)
+
+# Dequeue: Eliminar el primer elemento de la cola
+elemento_eliminado = cola.dequeue()
+
+# Mostrar resultados
+print("Elemento eliminado:", elemento_eliminado)
+print("Cola después del dequeue:", cola.items)
+
+Entrada: 1, 2, 3
+Salida: Elemento eliminado: 1,  Cola después del dequeue: [2, 3]
+
+
+Ejercicio 3
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.siguiente = None
+        self.potencial = 0  # Potencial asociado al nodo
+
+class ListaVinculada:
+    def __init__(self):
+        self.cabeza = None
+
+    def insertar(self, valor):
+        nuevo_nodo = Nodo(valor)
+        nuevo_nodo.siguiente = self.cabeza
+        self.cabeza = nuevo_nodo
+
+        # Ajustar el potencial después de la inserción
+        self.ajustar_potencial()
+
+    def ajustar_potencial(self):
+        # Lógica para ajustar el potencial, puede variar según el escenario
+        pass                                                                                                                                                                                  
+Actividad de reingeniería:
+
+-Realiza el análisis de complejidad de tiempo y espacio
+Tiempo:
+insertar: Tiene una complejidad de tiempo O(1) ya que simplemente agrega un nodo al principio de la lista.
+ajustar_potencial: La complejidad dependerá de la lógica específica implementada en este método. Si la lógica es lineal en función del tamaño de la lista, entonces la complejidad sería O(n), donde n es el tamaño de la lista.
+
+Espacio:
+La complejidad de espacio es O(n), donde n es el número de nodos en la lista.
+
+-Justifica que sirve y es funcional
+Este código implementa una lista vinculada simple con nodos que contienen un valor, 
+una referencia al siguiente nodo y un atributo de potencial. La función insertar agrega un nuevo nodo al principio de la lista y luego ajusta el potencial utilizando el método ajustar_potencial.
+
+-Establece los pasos del algoritmo
+Inicialización: Crea una instancia de la clase ListaVinculada.
+Insertar: Agrega elementos a la lista utilizando el método insertar. Esto crea un nuevo nodo y lo agrega al principio de la lista.
+Ajustar potencial: Después de cada inserción, ajusta el potencial de la lista utilizando el método ajustar_potencial.
+
+-Propón un ejemplo indicando entradas y salidas
+# Definición de la clase Nodo
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.siguiente = None
+        self.potencial = 0  # Potencial asociado al nodo
+
+# Definición de la clase ListaVinculada
+class ListaVinculada:
+    def __init__(self):
+        self.cabeza = None
+
+    def insertar(self, valor):
+        nuevo_nodo = Nodo(valor)
+        nuevo_nodo.siguiente = self.cabeza
+        self.cabeza = nuevo_nodo
+
+        # Ajustar el potencial después de la inserción
+        self.ajustar_potencial()
+
+    def ajustar_potencial(self):
+        # Lógica para ajustar el potencial, puede variar según el escenario
+        pass
+
+# Crear una instancia de ListaVinculada
+lista = ListaVinculada()
+
+# Insertar elementos en la lista
+lista.insertar(1)
+lista.insertar(2)
+lista.insertar(3)
+
+# Mostrar resultados
+nodo_actual = lista.cabeza
+valores_lista = []
+
+while nodo_actual:
+    valores_lista.append(nodo_actual.valor)
+    nodo_actual = nodo_actual.siguiente
+
+print("Lista después de la inserción:", valores_lista)
+
+Entrada: 1, 2, 3
+
+Salida: Lista después de la inserción: [3, 2, 1]
+
+
+Ejercicio 6
+Algoritmo de Monte Carlo Enunciado: Utiliza el algoritmo de Monte Carlo para estimar el valor de π lanzando dardos aleatorios dentro de un cuadrado que contiene un círculo.                                                      
+
+import random
+
+def estimar_pi(num_dardos):
+    dentro_circulo = 0
+
+    for _ in range(num_dardos):
+        x, y = random.uniform(-1, 1), random.uniform(-1, 1)
+        distancia = x**2 + y**2
+
+        if distancia <= 1:
+            dentro_circulo += 1
+
+    return (dentro_circulo / num_dardos) * 4
+
+# Ejemplo de uso
+num_dardos = 100000
+resultado = estimar_pi(num_dardos)
+print(f"Estimación de π con {num_dardos} dardos: {resultado}")
+Actividad de reingeniería:
+
+-Realiza el análisis de complejidad de tiempo y espacio
+Tiempo:
+La complejidad de tiempo depende linealmente del número de dardos lanzados (num_dardos). En cada iteración del bucle, se realizan operaciones constantes. Por lo tanto, la complejidad de tiempo es O(num_dardos).
+
+Espacio:
+La complejidad de espacio es O(1), ya que no se utiliza memoria adicional que dependa del tamaño de entrada.
+
+-Justifica que sirve y es funcional
+Este código utiliza el método de Monte Carlo para estimar el valor de π. 
+Genera puntos aleatorios dentro de un cuadrado y cuenta cuántos de esos puntos caen dentro de un círculo inscrito en el cuadrado. 
+La relación entre el área del círculo y el cuadrado proporciona una estimación de π. El algoritmo es funcional y proporciona estimaciones más precisas a cada vez que aumenta el número de dardos lanzados.
+
+-Establece los pasos del algoritmo
+Inicialización: Se inicia con un contador (dentro_circulo) en cero.
+Bucle de iteración: Se lanzan num_dardos dardos. En cada lanzamiento, se genera un par de coordenadas (x, y) aleatorias en el rango [-1, 1]. Se calcula la distancia desde el origen (0,0) hasta el punto (x, y). Si la distancia es menor o igual a 1, se considera que el punto está dentro del círculo, y se incrementa el contador dentro_circulo.
+Resultado: La estimación de π se calcula como (dentro_circulo / num_dardos) * 4.
